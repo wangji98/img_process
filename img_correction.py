@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #读取图片
-src = cv2.imread('paper.jpg')
+src = cv2.imread('img/paper.jpg')
 
 #获取图像大小
 rows, cols = src.shape[:2]
@@ -16,7 +16,7 @@ gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
 #边缘检测（检测出图像的边缘信息）
 edges = cv2.Canny(gray,50,250,apertureSize = 3)
-cv2.imwrite("canny.jpg", edges)
+cv2.imwrite("save_plot/canny.jpg", edges)
 
 #通过霍夫变换得到A4纸边缘
 lines = cv2.HoughLinesP(edges,1,np.pi/180,50,minLineLength=90,maxLineGap=10)

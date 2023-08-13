@@ -8,6 +8,7 @@ from img_morphology import ImageMorphology
 from img_warpaffine import WarpAffine
 from img_cvtcolor import CvtColor
 from img_gray_process import gary_process
+from img_edge import Edge
 def ImgAttribute(img):
     '''
 
@@ -66,7 +67,7 @@ def Hist(img):
     plt.show()
 if __name__ == '__main__':
 
-    img_path = 'Lena.png'
+    img_path = 'img/Lena.png'
     img = ImgRead(img_path)
     # rows, cols, channel = ImgAttribute(img)
     # ImgShow(img)
@@ -97,4 +98,6 @@ if __name__ == '__main__':
     # Hist(img)
     # WarpAffine(img)
     # CvtColor(img)
-    gary_process(img)
+    # gary_process(img)
+    edge = Edge(img)
+    edge.plot()

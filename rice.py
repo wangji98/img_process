@@ -6,7 +6,7 @@ from matplotlib import cm
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
 
 #读取图像
-img = cv.imread("rice.png")
+img = cv.imread("img/rice.png")
 img = cv.cvtColor(img,cv.COLOR_BGR2GRAY)
 
 # #图像黑帽运算
