@@ -3,7 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from img_blur import blur
 from img_transform import IamgeTransform
-from img_threshold import BinaryThreshold
+from img_threshold import ImageThreshod
+from img_morphology import ImageMorphology
 def ImgAttribute(img):
     '''
 
@@ -50,7 +51,7 @@ def BGRChannel(img):
 
 if __name__ == '__main__':
 
-    img_path = 'Lena.png'
+    img_path = 'test01.jpg'
     img = ImgRead(img_path)
     # rows, cols, channel = ImgAttribute(img)
     # ImgShow(img)
@@ -74,4 +75,7 @@ if __name__ == '__main__':
     # trans.ImgFlip()
     # trans.ImgResize()
     # trans.ImgTranslata()
-    BinaryThreshold(img)
+    # threshold = ImageThreshod(img)
+    # threshold.AdaptiveThreshold()
+    # threshold.Threshold()
+    ImageMorphology(img)
