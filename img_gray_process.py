@@ -99,4 +99,5 @@ def gary_process(img):
         plt.title(titles[i])
         plt.xticks([]), plt.yticks([])
     plt.tight_layout()
+    plt.savefig('save_plot/gary_process.jpg')
     plt.show()

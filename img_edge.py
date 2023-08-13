@@ -43,13 +43,37 @@ class Edge:
         dst = cv2.Laplacian(self.binary, cv2.CV_16S, ksize = 3)
         Laplacian = cv2.convertScaleAbs(dst)
         return Laplacian
+    def Scharr(self):
+        # Scharr算子
+        x = cv2.Scharr(self.grayImage, cv2.CV_32F, 1, 0)  # X方向
+        y = cv2.Scharr(self.grayImage, cv2.CV_32F, 0, 1)  # Y方向
+        absX = cv2.convertScaleAbs(x)
+        absY = cv2.convertScaleAbs(y)
+        Scharr = cv2.addWeighted(absX, 0.5, absY, 0.5, 0)
+        return Scharr
+    def Canny(self):
+        # Canny算子
+        gaussian = cv2.GaussianBlur(self.grayImage, (3, 3), 0)  # 高斯滤波降噪
+        Canny = cv2.Canny(gaussian, 50, 150)
+        return Canny
+    def LOG(self):
+        # LOG算子
+        gaussian = cv2.GaussianBlur(self.grayImage, (3, 3), 0)  # 先通过高斯滤波降噪
+        dst = cv2.Laplacian(gaussian, cv2.CV_16S, ksize=3)  # 再通过拉普拉斯算子做边缘检测
+        LOG = cv2.convertScaleAbs(dst)
+        return LOG
+
     def plot(self):
         #效果图
         titles = ['Source Image', 'Binary Image', 'Roberts Image',
-                  'Prewitt Image','Sobel Image', 'Laplacian Image']
-        images = [self.lenna_img, self.binary,self.Roberts(), self.Prewitt(), self.Sobel(), self.Laplacian()]
-        for i in np.arange(6):
-           plt.subplot(2,3,i+1),plt.imshow(images[i],'gray')
+                  'Prewitt Image','Sobel Image', 'Laplacian Image',
+                  'Scharr Image','Canny Image','LOG Image']
+        images = [self.lenna_img, self.binary,self.Roberts(), self.Prewitt(), self.Sobel(), self.Laplacian(),
+                  self.Scharr(),self.Canny(),self.LOG()]
+        for i in np.arange(9):
+           plt.subplot(3,3,i+1),plt.imshow(images[i],'gray')
            plt.title(titles[i])
            plt.xticks([]),plt.yticks([])
+        plt.tight_layout()
+        plt.savefig('save_plot/edge.jpg')
         plt.show()
