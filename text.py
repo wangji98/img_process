@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from img_blur import blur
 from img_transform import IamgeTransform
+from img_threshold import BinaryThreshold
 def ImgAttribute(img):
     '''
 
@@ -51,7 +52,7 @@ if __name__ == '__main__':
 
     img_path = 'Lena.png'
     img = ImgRead(img_path)
-    rows, cols, channel = ImgAttribute(img)
+    # rows, cols, channel = ImgAttribute(img)
     # ImgShow(img)
     # b,g,r,m = BGRChannel(img)
     # # 只显示蓝色通道
@@ -68,8 +69,9 @@ if __name__ == '__main__':
     # ImgFlip(img)
     # ImgTranslata(img)
     # ImgResize(img)
-    trans = IamgeTransform(img)
-    trans.ImgRotation()
-    trans.ImgFlip()
-    trans.ImgResize()
-    trans.ImgTranslata()
+    # trans = IamgeTransform(img)
+    # trans.ImgRotation()
+    # trans.ImgFlip()
+    # trans.ImgResize()
+    # trans.ImgTranslata()
+    BinaryThreshold(img)
