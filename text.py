@@ -5,6 +5,9 @@ from img_blur import blur
 from img_transform import IamgeTransform
 from img_threshold import ImageThreshod
 from img_morphology import ImageMorphology
+from img_warpaffine import WarpAffine
+from img_cvtcolor import CvtColor
+from img_gray_process import gary_process
 def ImgAttribute(img):
     '''
 
@@ -48,10 +51,22 @@ def BGRChannel(img):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     return b,g,r,m
+def Hist(img):
+    histb = cv2.calcHist([img], [0], None, [256], [0, 255])
+    histg = cv2.calcHist([img], [1], None, [256], [0, 255])
+    histr = cv2.calcHist([img], [2], None, [256], [0, 255])
 
+    cv2.imshow("src", img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+    plt.plot(histb, color='b')
+    plt.plot(histg, color='g')
+    plt.plot(histr, color='r')
+    plt.show()
 if __name__ == '__main__':
 
-    img_path = 'test01.jpg'
+    img_path = 'Lena.png'
     img = ImgRead(img_path)
     # rows, cols, channel = ImgAttribute(img)
     # ImgShow(img)
@@ -78,4 +93,8 @@ if __name__ == '__main__':
     # threshold = ImageThreshod(img)
     # threshold.AdaptiveThreshold()
     # threshold.Threshold()
-    ImageMorphology(img)
+    # ImageMorphology(img)
+    # Hist(img)
+    # WarpAffine(img)
+    # CvtColor(img)
+    gary_process(img)
